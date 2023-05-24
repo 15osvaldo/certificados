@@ -11,9 +11,14 @@
     width: 70%;
     background-color: darkgray;
 }
+ul.li{
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+}
 div.contenedor{
     width: 350px;    
-    border: 5px solid #425252;
+    border: 5px solid #4d5e5e;
     padding: 0px;        
     /*text-align: center;*/  
     /*position: sticky;*/
@@ -27,8 +32,9 @@ input{
     cursor: pointer;
     background-size: 300px;
     
+    
     transition: 0.6s;
-    background-image: linear-gradient(to left , #1a1d1e, #e8e8f1, #383b3d);
+    background-image: linear-gradient(to left , #1a1d1e, #e8e8f1, #686d70);
 }
 input:hover{
     background-position: right;
@@ -67,13 +73,15 @@ div,ul, li{
             <ul><h2>Certificados obtenidos </h2>
                 
                 <h3> Udemy</h3>
-                <li><input type="button" value="Certificado de CSS"class="boton" id="css" onclick="CSS()">  </li>
-                <li><input type="button" value="Certificado de MYSQL"  id="mysql" onclick="MYSQL()"></li>      
-                <li> <input type="button" value="Certificado de Introduccion GIT"  id="git" onclick="GIT()"> </li> 
-                <li> <input type="button" value="Certificado de Introduccion a Javascript"  id="git" onclick="JAVASCRIPT()"> </li> 
+                <li><input type="button" value="Certificado de CSS"class="boton"            id="css"     onclick="CSS()">        </li>
+                <li><input type="button" value="Certificado de MYSQL"                       id="mysql"   onclick="MYSQL()">      </li>      
+                <li> <input type="button" value="Certificado de Introduccion GIT"           id="git"     onclick="GIT()">        </li> 
+                <li> <input type="button" value="Certificado de Introduccion a Javascript"  id="git"     onclick="JAVASCRIPT()"> </li> 
+                <li> <input type="button" value="Certificado de CSHARP nivel basico"        id="git"     onclick="csharp1()">    </li> 
+                <li> <input type="button" value="Certificado de CSHARP nivel intermedio"    id="git"     onclick="csharp2()">    </li> 
                 <h3> Google activate</h3>
-                <li> <input type="button" value="Introduccion a progrmacion web I"  id="google1" onclick="GOOGLEUNO()"> </li>               
-                <li> <input type="button" value="Introduccion a progrmacion web II"  id="google2" onclick="GOOGLEDOS()"> </li>               
+                <li> <input type="button" value="Introduccion a progrmacion web I"          id="google1" onclick="GOOGLEUNO()">  </li>               
+                <li> <input type="button" value="Introduccion a progrmacion web II"         id="google2" onclick="GOOGLEDOS()">  </li>               
 
                 
             </ul>            
@@ -113,6 +121,14 @@ function GOOGLEDOS(){
 function JAVASCRIPT(){
     elemento = document.getElementById("img");
     elemento.src = "javascript.jpg";
+}
+function csharp1(){
+    elemento = document.getElementById("img");
+    elemento.src = "csharp2.jpg";
+}
+function csharp2(){
+    elemento = document.getElementById("img");
+    elemento.src = "csharp1.jpg";
 }
 </script>
     
