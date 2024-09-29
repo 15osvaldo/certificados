@@ -94,6 +94,7 @@
             margin: 10px;
             border: 55px 0 0;
             border-color: 23px solid black;
+            border-radius: 2rem;
         }
         .opciones-udemy{
             max-height: 200px;
@@ -138,6 +139,21 @@
   display: block;
   width: 80%;
   max-width: 700px;
+}
+.Credenciales{
+    background-color: #bbb4b4;
+    width: 180px;
+    height: 20px;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+    align-items: center;
+    box-shadow: .5rem .5rem 1rem #a8a4a4, -.5rem -.5rem 1rem #636060;
+    
+}
+.Credenciales :hover{
+    box-shadow: .5rem .5rem 1rem #a8a4a4, -.5rem -.5rem 1rem #636060;
+    font-weight: bold;
+    color: #0e0d0d;
 }
 
 #caption {
@@ -223,9 +239,9 @@
                 </h3>
                 <div id="freecode" style="display: none;">
                     <li><input type="button" value="Front End Development Libraries con React" id="FCC_FRONT1" onclick="cambiarImagen('FCC_FRONT1')"></li>
-                    <li><a target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/front-end-development-libraries">Mostrar Credenciales</a></li>
-                    <li><input type="button" value="Legacy Javascript Algorithms and Data Structure" id="FCC_javascript" onclick="cambiarImagen('FCC_javascript')"></li>
-                    <li><a target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/javascript-algorithms-and-data-structures">Mostrar Credenciales</a></li>
+                    <li class="Credenciales"><a style="text-decoration: none;" target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/front-end-development-libraries">Mostrar Credenciales</a></li>
+                    <li ><input type="button" value="Legacy Javascript Algorithms and Data Structure" id="FCC_javascript" onclick="cambiarImagen('FCC_javascript')"></li>
+                    <li class="Credenciales"><a style="text-decoration: none;" target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/javascript-algorithms-and-data-structures">Mostrar Credenciales</a></li>
                 </div>
                 <h3 onclick="google()" class="titulo">Google Activate    
                     <img src="google-activate.jpg" class="gactivate" />
