@@ -1,162 +1,320 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <title>Certificados</title>
-<style>
-    body{
-    height: 70%;
-    width: 70%;
-    background-color: #eee;
-   /* background-color: darkgray;*/
-}
-ul.li{
-    font-weight: bold;
-    font-size: 14px;
-    color: white;
-}
-div.contenedor{
-    width: 650px;    
-    box-shadow: inset 2px 1px 20px rgba(0,0,0,0.3);
-    /*border: 5px solid #4d5e5e;*/
-    padding: 0px;        
-    /*text-align: center;*/  
-    /*position: sticky;*/
-}
-input{/*
-    border: 3px solid rgba(100, 100, 100, 0.1);
-    margin-bottom: 12px;
-    padding: 2px;
-    width: 260px;
-    font-size: 14px;
-    cursor: pointer;
-    background-size: 300px;    
-    
-    transition: 0.6s;
-    background-image: linear-gradient(to left , #1a1d1e, #e8e8f1, #686d70);
-    */
-    background-color: transparent;
-    font-weight: semibold;
-    /*color: #444;*/
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
-    border: 2px solid rgb(231, 229, 229);
-    border-radius: .5rem;
-    cursor: pointer;
-    transition: all 1s ease;
-    margin: 6px;
-    box-shadow: .5rem .5rem .1rem #ccc;
-}
-input:hover{
-    /*background-position: right;*/
-    font-weight: bold;
-    box-shadow: .5rem .5rem 1rem #ccc, -.5rem -.5rem 1rem #fff;
-}
-button:active{
-    box-shadow: inset .5rem .5rem 1rem #ccc,inset -1rem -.5rem 1rem #fff;
+    <style>
+        /* Ajustes básicos */
+        * {
+            box-sizing: border-box;
+        }
+        .titulo{
+            display: flex;
+            width: 400px;
+            color: white;
+            cursor: pointer;
+            border: 0.001rem  solid #0e0d0d ;
+            border-radius: .9rem 0;
+            padding: 0.8rem ;
+            background-color: rgb(8, 8, 31);
+            margin: 1rem;
+            align-items: center;
+        }
 
-}
-img{
-    height: 575px;
-    width: 675px;
-    padding-left: 100px;
-}
-div.caja1{
-    width: 500px;
-    display: flex;
-    
-    /*background-color: rgb(187, 14, 14);*/
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(21, 21, 41);
+            font-family: Arial, sans-serif;
+        }
 
-}
-.principal{
-    display: flex;  
-    border-left: 120000px;  
-    /*padding: 0pc;    
-    border:3px solid #060d0d;*/
+        h2, h3 {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        input {
+            background-color: white;
+            font-weight: semibold;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid rgb(231, 229, 229);
+            border-radius: .5rem;
+            cursor: pointer;
+            transition: all 1s ease;
+            margin: 6px;
+            box-shadow: .5rem .5rem .1rem #ccc;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input:hover {
+            font-weight: bold;
+            box-shadow: .5rem .5rem 1rem #ccc, -.5rem -.5rem 1rem #fff;
+        }
+
+        .principal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .fcc, .udemy{
+            width: 40px;
+            margin: 0 0 0 160px;
+            border: none;
+            background: none;
+        }
+        .udemy, .gactivate{
+            width: 35px;
+            margin: 0 0 0 16rem;
+            padding: 0;
+            border: none;
+            background: none;
+            border-radius: 5rem;
+        }
+
+        .contenedor, .caja1 {
+            flex: 1 1 45%;
+            padding: 20px;
+            background-color: #797474;
+            box-shadow: inset 2px 1px 20px rgba(238, 235, 235, 0.3);
+            margin: 10px;
+            border: 55px 0 0;
+            border-color: 23px solid black;
+        }
+        .opciones-udemy{
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            width: 100% ;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+        }
+        /* styles.css */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-div,ul, li{    
-    list-style-type: none;
+#myImg:hover {
+  opacity: 0.7;
 }
 
-</style>
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo en la pantalla */
+  z-index: 1; /* Encima de otros elementos */
+  padding-top: 100px; /* Espacio desde la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  overflow: auto; /* Habilitar scroll si es necesario */
+  background-color: rgb(0,0,0); /* Color de fondo */
+  background-color: rgba(0,0,0,0.9); /* Fondo con opacidad */
+}
 
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+        /* Media query para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .contenedor, .caja1 {
+                flex: 1 1 100%;
+                margin: 10px 0;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-
-
     <div class="principal">
-        <div class="contenedor">           
-            <ul><h2>Certificados obtenidos </h2>
+        <div class="contenedor">
+            <ul>
+                <h2 style="color: white;">Certificados obtenidos</h2>
+                <h3 onclick="udemy()" class="titulo">UDEMY
+                    <img src="u.jpg" class="udemy"/>
+                </h3>
+                <div id="udemy" class="opciones-udemy" style="display: none;">
+                    <li><input type="button" value="Certificado de CSS" class="boton" id="css" onclick="cambiarImagen('CSS')"></li>
+                    <li><input type="button" value="Certificado de MYSQL" id="mysql" onclick="cambiarImagen('MySQL')"></li>
+                    <li><input type="button" value="Certificado de Introducción GIT" id="git" onclick="cambiarImagen('git')"></li>
+                    <li><input type="button" value="Certificado de Introducción a Javascript" id="javascript" onclick="cambiarImagen('javascript')"></li>
+                    <li><input type="button" value="Certificado de React Nivel Básico" id="react" onclick="cambiarImagen('react')"></li>
+                    <li><input type="button" value="Certificado de React + Firebase" id="react" onclick="cambiarImagen('react-firebase')"></li>
+                    <li><input type="button" value="Certificado de CSHARP Nivel Básico" id="csharp2" onclick="cambiarImagen('csharp2')"></li>
+                    <li><input type="button" value="Certificado de CSHARP Nivel Intermedio" id="csharp1" onclick="cambiarImagen('csharp1')"></li>
+                   
+                </div>
+                <h3 onclick="freecode()" class="titulo">FREECODECAMP
+                    <img class="fcc" src="freecodecamp.jpg" alt="FreeCodeCamp"  />
                 
-                <h3> Udemy</h3>
-                <li>
-                    <input type="button" value="Certificado de CSS"class="boton"            id="css"     onclick="CSS()">
-                 </li>
-                <li><input type="button" value="Certificado de MYSQL"                       id="mysql"   onclick="MYSQL()">      </li>      
-                <li> <input type="button" value="Certificado de Introduccion GIT"           id="git"     onclick="GIT()">        </li> 
-                <li> <input type="button" value="Certificado de Introduccion a Javascript"  id="git"     onclick="JAVASCRIPT()"> </li> 
-                <li> <input type="button" value="Certificado de CSHARP nivel basico"        id="git"     onclick="csharp1()">    </li> 
-                <li> <input type="button" value="Certificado de CSHARP nivel intermedio"    id="git"     onclick="csharp2()">    </li> 
-                <li> <input type="button" value="Certificado de react nivel basico"    id="git"     onclick="react()">    </li> 
-                <h3> Google activate</h3>
-                <li> <input type="button" value="Introduccion a progrmacion web I"          id="google1" onclick="GOOGLEUNO()">  </li>               
-                <li> <input type="button" value="Introduccion a progrmacion web II"         id="google2" onclick="GOOGLEDOS()">  </li>               
+                </h3>
+                <div id="freecode" style="display: none;">
+                    <li><input type="button" value="Front End Development Libraries con React" id="FCC_FRONT1" onclick="cambiarImagen('FCC_FRONT1')"></li>
+                    <li><a target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/front-end-development-libraries">Mostrar Credenciales</a></li>
+                    <li><input type="button" value="Legacy Javascript Algorithms and Data Structure" id="FCC_javascript" onclick="cambiarImagen('FCC_javascript')"></li>
+                    <li><a target="_blank" href="https://www.freecodecamp.org/certification/fccc6104ba0-aaf7-45a8-a8f4-ea339dad1ad7/javascript-algorithms-and-data-structures">Mostrar Credenciales</a></li>
+                </div>
+                <h3 onclick="google()" class="titulo">Google Activate    
+                    <img src="google-activate.jpg" class="gactivate" />
+                </h3>
+                <div id="google" style="display: none;">
+                    <li><input type="button" value="Introducción a Programación Web I" id="google1" onclick="cambiarImagen('google1')"></li>
+                    <li><input type="button" value="Introducción a Programación Web II" id="google2" onclick="cambiarImagen('google2')"></li>
+                </div>
 
-                
-            </ul>            
+            </ul>
+            
         </div>
-        <div class="caja1" >
-            <p id="uno" >
-                <img src="CSS.jpg"  id="img">             
-            </p>
-           
+        <div class="caja1">
+            <img src="CSS.jpg" id="img" onclick="mostrarModal()" alt="Certificado" style="cursor: pointer;">
         </div>
-</div>
+    </div>
+    <!-- El Modal -->
+  <div id="myModal" class="modal" >
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
 
 <script>
-  
-    function CSS(){
-    elemento = document.getElementById("img");
-    elemento.src = "CSS.jpg";    
-}
+    function cambiarImagen(nombre){
+        var elemento = document.getElementById("img");
+        elemento.src = nombre + ".jpg";
+    }
 
-function MYSQL(){
-    elemento = document.getElementById("img");
-    elemento.src = "MySQL.jpg";    
-}
+    function udemy() {
+        let temaVisible = $("#udemy").is(":visible");
 
-function GIT(){
-    elemento = document.getElementById("img");
-    elemento.src = "git.jpg";
-}
-function GOOGLEUNO(){
-    elemeto = document.getElementById("img");
-    elemento.src = "google1.jpg";
-}
-function GOOGLEDOS(){
-    elemento = document.getElementById("img");
-    elemento.src = "google2.jpg";
-}
-function JAVASCRIPT(){
-    elemento = document.getElementById("img");
-    elemento.src = "javascript.jpg";
-}
-function csharp1(){
-    elemento = document.getElementById("img");
-    elemento.src = "csharp2.jpg";
-}
-function csharp2(){
-    elemento = document.getElementById("img");
-    elemento.src = "csharp1.jpg";
-}
-function react(){
-    elemento = document.getElementById("img");
-    elemento.src = "react.jpg";
+        if(temaVisible) {
+            document.getElementById('udemy').style.display = "none";
+        } else {
+            document.getElementById('udemy').style.display = "block";
+            document.getElementById('google').style.display = "none";
+            document.getElementById('freecode').style.display = "none";
+        }
+    }
+
+    function google() {
+        let temaVisible = $('#google').is(":visible");
+
+        if(temaVisible) {
+            document.getElementById('google').style.display = "none";
+        } else {
+            document.getElementById('google').style.display = "block";
+            document.getElementById('udemy').style.display = "none";
+            document.getElementById('freecode').style.display = "none";
+        }
+    }
+
+    function freecode() {
+        let temaVisible = $('#freecode').is(":visible");
+
+        if(temaVisible) {
+            document.getElementById('freecode').style.display = "none";
+        } else {
+            document.getElementById('freecode').style.display = "block";
+            document.getElementById('udemy').style.display = "none";
+            document.getElementById('google').style.display = "none";
+        }
+    }
+    function mostrarModal(){
+    document.getElementById('myModal').style.display = 'block'
+    var modal = document.getElementById("myModal");
+
+    // Obtener la imagen y el elemento modal
+    var img = document.getElementById("img");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+
+    // Cuando se hace clic en la imagen, abrir el modal
+    img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    }
+
+    // Obtener el elemento <span> que cierra el modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // Cuando se hace clic en <span> (x), cerrar el modal
+    span.onclick = function() { 
+        modal.style.display = "none";
+    }
 }
 </script>
-    
+
 </body>
 </html>
