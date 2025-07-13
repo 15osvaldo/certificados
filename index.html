@@ -219,7 +219,7 @@
         <div class="contenedor">
             <ul>
                 <h2 style="color: white;">Certificados obtenidos</h2>
-                <h3 onclick="udemy()" class="titulo">UDEMY
+                <h3 onclick="udemy()" class="titulo" cursor >UDEMY
                     <img src="u.jpg" class="udemy"/>
                 </h3>
                 <div id="udemy" class="opciones-udemy" >
@@ -271,41 +271,34 @@
         elemento.src = nombre + ".jpg";
     }
 
-    function udemy() {
-        let temaVisible = $("#udemy").is(":visible");
-
-        if(temaVisible) {
-            document.getElementById('udemy').style.display = "none";
-        } else {
-            document.getElementById('udemy').style.display = "block";
-            document.getElementById('google').style.display = "none";
-            document.getElementById('freecode').style.display = "none";
+            function udemy() {
+            toggleSeccion("udemy");
         }
-    }
 
-    function google() {
-        let temaVisible = $('#google').is(":visible");
-
-        if(temaVisible) {
-            document.getElementById('google').style.display = "none";
-        } else {
-            document.getElementById('google').style.display = "block";
-            document.getElementById('udemy').style.display = "none";
-            document.getElementById('freecode').style.display = "none";
+        function google() {
+            toggleSeccion("google");
         }
-    }
 
-    function freecode() {
-        let temaVisible = $('#freecode').is(":visible");
-
-        if(temaVisible) {
-            document.getElementById('freecode').style.display = "none";
-        } else {
-            document.getElementById('freecode').style.display = "block";
-            document.getElementById('udemy').style.display = "none";
-            document.getElementById('google').style.display = "none";
+        function freecode() {
+            toggleSeccion("freecode");
         }
-    }
+
+        function toggleSeccion(id) {
+            const secciones = ["udemy", "freecode", "google"];
+
+    secciones.forEach(sec => {
+        const seccion = document.getElementById(sec);
+        if (sec === id) {
+            // Si ya está visible, la ocultamos
+            seccion.style.display = (seccion.style.display === "block") ? "none" : "block";
+        } else {
+            // Ocultamos cualquier otra sección abierta
+            seccion.style.display = "none";
+        }
+    });
+        }
+
+
     function mostrarModal(){
     document.getElementById('myModal').style.display = 'block'
     var modal = document.getElementById("myModal");
@@ -315,21 +308,20 @@
     var modalImg = document.getElementById("img01");
     var captionText = document.getElementById("caption");
 
-    // Cuando se hace clic en la imagen, abrir el modal
-    img.onclick = function(){
     modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-    }
-
-    // Obtener el elemento <span> que cierra el modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // Cuando se hace clic en <span> (x), cerrar el modal
-    span.onclick = function() { 
-        modal.style.display = "none";
-    }
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
 }
+
+ // Cierre del modal (solo se define una vez)
+        document.addEventListener("DOMContentLoaded", function() {
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                document.getElementById("myModal").style.display = "none";
+            };
+        });
+
+
 </script>
 
 </body>
